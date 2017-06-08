@@ -16,12 +16,12 @@ export default {
       "global.clearTimeout": "window.clearTimeout",
       "global.performance": "window.performance",
       "process.env.NODE_ENV": JSON.stringify( process.env.NODE_ENV )
-      //, "global.GENTLY": "false" // this line is for auth0-js / formidable
+      , "global.GENTLY": "false" // this line is for auth0-js / formidable
     } ),
-//    replace( { // this replace was added for auth0-js / superagent
-//      include: '**/superagent/lib/request-base.js',
-//      values: { ' clearTimeout': ' window.clearTimeout' }
-//    } ),
+    replace( { // this replace was added for auth0-js / superagent
+      include: '**/superagent/lib/request-base.js',
+      values: { ' clearTimeout': ' window.clearTimeout' }
+    } ),
     json(), // this plugin was added for auth0-js
     builtins(),
     nodeResolve(),

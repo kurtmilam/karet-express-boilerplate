@@ -9,7 +9,7 @@
     "bundle:js": "sh -c \"cp node_modules/babel-polyfill/dist/polyfill.min.js public/generated/bundle.js && NODE_ENV=production rollup -f iife -c -i src/public/client.js >> public/generated/bundle.js\"",
     "lint": "eslint .",
     "livereload:public": "livereload public",
-    "prepare": "sh -c \"mkdir -p public/generated && ramda-rollup-hack && npm run bundle && npm run test\"",
+    "prepare": "sh -c \"mkdir -p public/generated && npm run bundle && npm run test\"",
     "start": "sh -c \"node $NODE_OPTS src/server/start.js\"",
     "watch": "sh -c \"npm run watch:server & npm run watch:js & npm run livereload:public & wait\"",
     "watch:css": "sh -c \"npm run bundle:css:watch && watch-run -p 'src/**/*.less' 'npm run bundle:css:watch'\"",
@@ -17,9 +17,11 @@
     "watch:server": "sh -c \"NODE_ENV=dev nodemon -e js --watch src/server --watch 'src/**/app.js' src/server/start.js\""
   },
   "license": "MIT",
+
   "dependencies": {
     "auth0-js": "^8.7.0",
     "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-polyfill": "^6.23.0",
@@ -28,26 +30,31 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.24.1",
-    "body-parser": "^1.17.1",
+    "body-parser": "^1.17.2",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
-    "eslint": "^3.19.0",
-    "express": "^4.15.2",
+    "express": "^4.15.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "rollup": "^0.42",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-json": "^2.3.0",
-    "rollup-plugin-node-builtins": "^2.1.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-uglify": "^1.0.2",
     "rollup-watch": "^3.2.2",
-    "serve-static": "^1.12.2"
+    "serve-static": "^1.12.3"
   },
   "devDependencies": {
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-react": "^7.0.1",
     "livereload": "^0.6.2",
     "nodemon": "^1.11.0",
+    "rollup-plugin-json": "^2.3.0",
     "watch-run": "^1.2.5"
   },
   "engines": {
