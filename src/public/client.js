@@ -1,55 +1,21 @@
-import * as Kefir    from "kefir"
-import * as L        from "partial.lenses"
-import * as R        from "ramda"
-import * as React    from "karet"
+import * as React    from "react"
 import * as ReactDOM from "react-dom"
-import * as U        from "karet.util"
 
-import MaybeSessionStored from "../client/maybe-session-stored"
-import {location}         from "../client/window"
 
-import * as Request from "../client/request"
-import * as RPC     from "../client/rpc"
+import auth0 from 'auth0-js'
 
-import Page from "./components/page"
+const webAuth =
+  new auth0.WebAuth(
+    { domain: 'example.auth0.com'
+    , clientID: ''
+    , redirectUri: 'http://localhost:3000'
+    , audience: 'https://example.auth0.com/userinfo'
+    , responseType: 'token id_token'
+    , scope: 'openid'
+    }
+  )
 
-import * as Meta  from "./meta"
-import * as State from "./state"
 
-//
 
-const state = MaybeSessionStored({
-  key: "state",
-  value: JSON.parse(document
-                    .getElementById("app-state")
-                    .getAttribute("data-state"))
-})
 
-//
-
-const context = State.context(location, window.location.host, state)
-
-//
-
-context.meta.changes().onValue(Meta.setToHead)
-
-//
-
-if (process.env.NODE_ENV !== "production") {
-  window.Kefir = Kefir
-  window.L = L
-  window.R = R
-  window.RPC = RPC
-  window.React = React
-  window.Request = Request
-  window.U = U
-  window.context = context
-  window.state = state
-
-  state.log("state")
-}
-
-//
-
-ReactDOM.render(<U.Context {...{context}}><Page/></U.Context>,
-                document.getElementById("app-view"))
+ReactDOM.render( <div>Welcome!{ console.log( 'hello' ) }</div>, document.getElementById("app-view") )
