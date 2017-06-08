@@ -9,9 +9,8 @@
     "bundle:js": "sh -c \"cp node_modules/babel-polyfill/dist/polyfill.min.js public/generated/bundle.js && NODE_ENV=production rollup -f iife -c -i src/public/client.js >> public/generated/bundle.js\"",
     "lint": "eslint .",
     "livereload:public": "livereload public",
-    "migrate": "node ./scripts/migrate",
     "prepare": "sh -c \"mkdir -p public/generated && ramda-rollup-hack && npm run bundle && npm run test\"",
-    "start": "sh -c \"npm run migrate max & wait && node $NODE_OPTS src/server/start.js\"",
+    "start": "sh -c \"node $NODE_OPTS src/server/start.js\"",
     "watch": "sh -c \"npm run watch:server & npm run watch:js & npm run livereload:public & wait\"",
     "watch:css": "sh -c \"npm run bundle:css:watch && watch-run -p 'src/**/*.less' 'npm run bundle:css:watch'\"",
     "watch:js": "sh -c \"NODE_ENV=dev rollup -w -c --sourcemap inline -i src/public/client.js -f iife -o public/generated/bundle.js\"",
@@ -21,7 +20,6 @@
   "dependencies": {
     "auth0-js": "^8.7.0",
     "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-polyfill": "^6.23.0",
@@ -33,6 +31,7 @@
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
+    "eslint": "^3.19.0",
     "express": "^4.15.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -47,9 +46,6 @@
     "serve-static": "^1.12.2"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-plugin-babel": "^4.1.1",
-    "eslint-plugin-react": "^7.0.0",
     "livereload": "^0.6.2",
     "nodemon": "^1.11.0",
     "ramda-rollup-hack": "^0.23.0-alpha1",

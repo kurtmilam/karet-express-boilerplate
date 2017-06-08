@@ -15,7 +15,6 @@ const webAuth =
     }
   )
 
-
-
-
-ReactDOM.render( <div>Welcome!{ console.log( 'hello' ) }</div>, document.getElementById("app-view") )
+ReactDOM.render( <div>Welcome!</div>
+               , document.getElementById("app-view")
+               )
