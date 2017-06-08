@@ -48,7 +48,6 @@
   "devDependencies": {
     "livereload": "^0.6.2",
     "nodemon": "^1.11.0",
-    "ramda-rollup-hack": "^0.23.0-alpha1",
     "watch-run": "^1.2.5"
   },
   "engines": {
