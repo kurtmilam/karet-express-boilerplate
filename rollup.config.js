@@ -2,6 +2,7 @@ import babel       from "rollup-plugin-babel"
 import builtins    from "rollup-plugin-node-builtins"
 import commonjs    from "rollup-plugin-commonjs"
 import nodeResolve from "rollup-plugin-node-resolve"
+import nodeGlobals from "rollup-plugin-node-globals"
 import replace     from "rollup-plugin-replace"
 import json        from "rollup-plugin-json"
 
@@ -16,11 +17,11 @@ export default {
       "global.clearTimeout": "window.clearTimeout",
       "global.performance": "window.performance",
       "process.env.NODE_ENV": JSON.stringify( process.env.NODE_ENV )
-      , "global.GENTLY": "false" // this line is for auth0-js / formidable
     } ),
-    replace( { // this replace was added for auth0-js / superagent
-      include: '**/superagent/lib/request-base.js',
-      values: { ' clearTimeout': ' window.clearTimeout' }
+    replace( {
+      include: '**/node_modules/formidable/lib/**',
+      values: { 'global.GENTLY': 'false'
+              } // added for formidable (auth0 / superagent dependency)
     } ),
     json(), // this plugin was added for auth0-js
     builtins(),
@@ -37,6 +38,7 @@ export default {
         ]
       }
     }),
-    babel()
+    babel(),
+    nodeGlobals() // added for superagent (auth0 dependency)
   ].filter(x => x)
 }

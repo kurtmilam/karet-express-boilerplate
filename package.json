@@ -17,7 +17,6 @@
     "watch:server": "sh -c \"NODE_ENV=dev nodemon -e js --watch src/server --watch 'src/**/app.js' src/server/start.js\""
   },
   "license": "MIT",
-
   "dependencies": {
     "auth0-js": "^8.7.0",
     "babel-cli": "^6.24.1",
@@ -55,6 +54,7 @@
     "livereload": "^0.6.2",
     "nodemon": "^1.11.0",
     "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-globals": "^1.1.0",
     "watch-run": "^1.2.5"
   },
   "engines": {

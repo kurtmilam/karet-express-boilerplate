@@ -1,20 +1,14 @@
 import * as React    from "react"
 import * as ReactDOM from "react-dom"
+import superagent    from "superagent"
 
+// This line throws an error in the browser when rollup-plugin-node-globals is called
+// in rollup.config.js
+superagent.get( 'http://example.com' ).end( ( ...x ) => console.log( ...x ) )
 
-import auth0 from 'auth0-js'
-
-const webAuth =
-  new auth0.WebAuth(
-    { domain: 'example.auth0.com'
-    , clientID: ''
-    , redirectUri: 'http://localhost:3000'
-    , audience: 'https://example.auth0.com/userinfo'
-    , responseType: 'token id_token'
-    , scope: 'openid'
-    }
-  )
-
-ReactDOM.render( <div>Welcome!</div>
-               , document.getElementById("app-view")
-               )
+ReactDOM.render(
+  <div>
+    Welcome!
+  </div>
+  , document.getElementById( 'app-view' )
+)
