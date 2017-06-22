@@ -11,7 +11,7 @@ import json        from "rollup-plugin-json"
 export default {
   plugins: [
     json(), // this plugin was added for auth0-js
-    nodeResolve(),
+    nodeResolve({ browser: true }),
     commonjs({
       include: 'node_modules/**',
       namedExports: {

@@ -1,6 +1,6 @@
 import * as React    from "react"
 import * as ReactDOM from "react-dom"
-import superagent    from "superagent/lib/client"
+import superagent    from "superagent"
 
 // This line throws an error in the browser when rollup-plugin-node-globals is called
 // in rollup.config.js
